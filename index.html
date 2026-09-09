@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>写给老师的一封信 · 教师节快乐</title>
+
+<style>
+
+/* =========================================================
+   基础
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #fffdf7 0%,
+            #f8f2e3 45%,
+            #e8e0c9 100%
+        );
+
+    color: #334b3e;
+
+    font-family:
+        "Noto Serif SC",
+        "Source Han Serif SC",
+        "Songti SC",
+        "STSong",
+        serif;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    touch-action: none;
+}
+
+
+/* =========================================================
+   宣纸纹理
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .25;
+
+    background-image:
+
+        repeating-linear-gradient(
+            0deg,
+            rgba(80,65,35,.025) 0px,
+            rgba(80,65,35,.025) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(80,65,35,.015) 0px,
+            rgba(80,65,35,.015) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+}
+
+
+/* =========================================================
+   顶部
+========================================================= */
+
+.header {
+
+    position: absolute;
+
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    z-index: 20;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.header.hide {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -15px);
+}
+
+.header-date {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 6px;
+
+    color: #a18b5b;
+
+    margin-bottom: 9px;
+}
+
+.header-title {
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #536d5d;
+}
+
+/* =========================================================
+   时间计时器
+========================================================= */
+
+.timer-container {
+
+    position: absolute;
+
+    top: 85px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    z-index: 20;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.timer-container.hide {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -15px);
+}
+
+.timer-text {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #8b7d6b;
+
+    line-height: 1.8;
+}
+
+.timer-count {
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: #c9a876;
+
+    font-weight: bold;
+
+    margin-top: 4px;
+}
+
+/* =========================================================
+   主舞台
+========================================================= */
+
+.stage {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   内容卡片
+========================================================= */
+
+.card {
+
+    position: relative;
+
+    width: min(760px, 90vw);
+
+    min-height: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   封面
+========================================================= */
+
+.cover {
+
+    cursor: pointer;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.cover.out {
+
+    opacity: 0;
+
+    transform: scale(.94);
+
+    pointer-events: none;
+}
+
+
+.cover-flower {
+
+    font-size: 50px;
+
+    margin-bottom: 30px;
+
+    animation:
+        breathe 4s ease-in-out infinite;
+}
+
+
+.cover-small {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 7px;
+
+    color: #a38d5c;
+
+    margin-bottom: 22px;
+}
+
+
+.cover-title {
+
+    font-size:
+        clamp(34px, 7vw, 58px);
+
+    font-weight: normal;
+
+    letter-spacing: 10px;
+
+    color: #30493c;
+
+    margin-bottom: 25px;
+}
+
+
+.cover-subtitle {
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    color: #68796d;
+}
+
+
+.cover-line {
+
+    width: 90px;
+
+    height: 1px;
+
+    background: #b8a579;
+
+    margin: 35px auto;
+}
+
+
+.cover-hint {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #99917f;
+
+    animation:
+        hintPulse 2.5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   正文
+========================================================= */
+
+.pages {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity .8s ease;
+}
+
+.pages.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+.message-box {
+
+    width: min(720px, 90vw);
+
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   小装饰
+========================================================= */
+
+.ornament {
+
+    font-size: 34px;
+
+    margin-bottom: 30px;
+
+    opacity: .85;
+
+    transform:
+        rotate(-8deg);
+}
+
+
+/* =========================================================
+   祝福语
+========================================================= */
+
+.message {
+
+    min-height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    font-size:
+        clamp(25px, 5vw, 42px);
+
+    line-height: 1.8;
+
+    letter-spacing: 5px;
+
+    color: #30483c;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity .65s ease,
+        transform .65s ease;
+}
+
+
+.message.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.message.final {
+
+    color: #9b5d4d;
+
+    font-size:
+        clamp(32px, 7vw, 55px);
+
+    letter-spacing: 9px;
+}
+
+
+/* =========================================================
+   页码 (隐藏)
+========================================================= */
+
+.page-info {
+
+    display: none;
+}
+
+
+.page-line {
+
+    width: 80px;
+
+    height: 1px;
+
+    background: #bcae87;
+
+    margin: 13px auto;
+}
+
+
+/* =========================================================
+   最后一页副标题
+========================================================= */
+
+.final-sub {
+
+    margin-top: 15px;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    color: #7d7b6c;
+
+    opacity: 0;
+
+    transition:
+        opacity 1.2s ease .5s;
+}
+
+.final-sub.show {
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   底部提示
+========================================================= */
+
+.hint {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #99927f;
+
+    white-space: nowrap;
+
+    z-index: 30;
+
+    transition:
+        opacity .5s ease;
+}
+
+
+/* =========================================================
+   印章
+========================================================= */
+
+.seal {
+
+    position: absolute;
+
+    right: 35px;
+
+    bottom: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid #b26152;
+
+    color: #b26152;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    text-align: center;
+
+    transform:
+        rotate(-8deg);
+
+    opacity: .7;
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   书本装饰
+========================================================= */
+
+.book {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -10px;
+
+    transform:
+        translateX(-50%);
+
+    width: 190px;
+    height: 30px;
+
+    border-bottom:
+        2px solid rgba(75,91,73,.16);
+
+    border-radius: 50%;
+
+    opacity: .7;
+}
+
+.book::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 90px;
+    height: 28px;
+
+    transform:
+        translateX(-100%)
+        skewY(-8deg);
+
+    border-top:
+        1px solid rgba(75,91,73,.18);
+
+    border-left:
+        1px solid rgba(75,91,73,.1);
+}
+
+.book::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 90px;
+    height: 28px;
+
+    transform:
+        skewY(8deg);
+
+    border-top:
+        1px solid rgba(75,91,73,.18);
+
+    border-right:
+        1px solid rgba(75,91,73,.1);
+}
+
+
+/* =========================================================
+   花瓣
+========================================================= */
+
+.petal {
+
+    position: fixed;
+
+    top: -30px;
+
+    width: 8px;
+    height: 12px;
+
+    border-radius:
+        80% 20% 80% 20%;
+
+    background:
+        rgba(184, 127, 94, .35);
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    animation:
+        fall linear infinite;
+}
+
+
+@keyframes fall {
+
+    from {
+
+        transform:
+            translateY(-30px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+
+        opacity: .5;
+    }
+
+    to {
+
+        transform:
+            translateY(110vh)
+            translateX(100px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   呼吸动画
+========================================================= */
+
+@keyframes breathe {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+    }
+}
+
+
+@keyframes hintPulse {
+
+    0%,100% {
+
+        opacity: .45;
+    }
+
+    50% {
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   手机
+========================================================= */
+
+@media(max-width:600px) {
+
+    .header {
+
+        top: 23px;
+    }
+
+    .header-title {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+    }
+
+    .header-date {
+
+        font-size: 9px;
+
+        letter-spacing: 4px;
+    }
+
+    .timer-container {
+
+        top: 70px;
+    }
+
+    .timer-text {
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+    .timer-count {
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+    }
+
+    .cover-flower {
+
+        font-size: 40px;
+
+        margin-bottom: 20px;
+    }
+
+    .cover-title {
+
+        font-size: 35px;
+
+        letter-spacing: 6px;
+    }
+
+    .cover-subtitle {
+
+        font-size: 13px;
+
+        letter-spacing: 3px;
+    }
+
+    .message {
+
+        font-size: 25px;
+
+        line-height: 1.9;
+
+        letter-spacing: 2px;
+
+        padding: 20px;
+    }
+
+    .message.final {
+
+        font-size: 34px;
+
+        letter-spacing: 5px;
+    }
+
+    .ornament {
+
+        font-size: 28px;
+
+        margin-bottom: 20px;
+    }
+
+    .seal {
+
+        display: none;
+    }
+
+    .book {
+
+        bottom: 15px;
+    }
+
+    .hint {
+
+        bottom: 20px;
+
+        font-size: 9px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     漂浮花瓣
+===================================================== -->
+
+<div class="petal" style="left:8%;animation-duration:11s;"></div>
+<div class="petal" style="left:23%;animation-duration:15s;animation-delay:3s;"></div>
+<div class="petal" style="left:41%;animation-duration:12s;animation-delay:5s;"></div>
+<div class="petal" style="left:63%;animation-duration:16s;animation-delay:1s;"></div>
+<div class="petal" style="left:78%;animation-duration:13s;animation-delay:6s;"></div>
+<div class="petal" style="left:92%;animation-duration:17s;animation-delay:2s;"></div>
+
+
+<!-- =====================================================
+     顶部标题
+===================================================== -->
+
+<div class="header" id="header">
+
+    <div class="header-date">
+        SEPTEMBER · 10
+    </div>
+
+    <div class="header-title">
+        教师节 · 致敬每一位老师
+    </div>
+
+</div>
+
+<!-- =====================================================
+     时间计时器
+===================================================== -->
+
+<div class="timer-container" id="timerContainer">
+
+    <div class="timer-text">
+        佳佳与您相识
+    </div>
+
+    <div class="timer-count" id="timerCount">
+        计算中...
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     主舞台
+===================================================== -->
+
+<div class="stage">
+
+
+    <!-- =================================================
+         封面
+    ================================================== -->
+
+    <div
+        class="card cover"
+        id="cover"
+    >
+
+        <div class="cover-flower">
+            🌿
+        </div>
+
+        <div class="cover-small">
+            A LETTER TO MY TEACHER
+        </div>
+
+        <div class="cover-title">
+            写给老师的一封信
+        </div>
+
+        <div class="cover-line"></div>
+
+        <div class="cover-subtitle">
+            谢谢您，曾照亮我前���的路
+        </div>
+
+        <div class="cover-line"></div>
+
+        <div class="cover-hint">
+            点击 · 或向上滑动开启
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         正文页面
+    ================================================== -->
+
+    <div
+        class="pages"
+        id="pages"
+    >
+
+        <div class="message-box">
+
+            <div
+                class="ornament"
+                id="ornament"
+            >
+                🌱
+            </div>
+
+            <div
+                class="message"
+                id="message"
+            >
+            </div>
+
+            <div
+                class="final-sub"
+                id="finalSub"
+            >
+                愿岁月温柔，愿桃李芬芳
+            </div>
+
+            <div class="page-info">
+
+                <span id="current">
+                    01
+                </span>
+
+                <div class="page-line"></div>
+
+                <span id="total">
+                    06
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         底部
+    ================================================== -->
+
+    <div class="hint" id="hint">
+        向上滑动继续阅读
+    </div>
+
+    <div class="seal">
+        老师<br>感谢<br>有你
+    </div>
+
+    <div class="book"></div>
+
+</div>
+
+
+<script>
+
+// =========================================================
+// 消息数据
+// =========================================================
+
+const messages = [
+    "亲爱的老师，\n感谢您一直以来的耐心教导",
+    "您用粉笔在黑板上书写知识，\n用心血浇灌我们成长的花朵",
+    "您不仅传授我们知识，\n更教会我们如何做人做事",
+    "感谢您在我迷茫时的指引，\n在我失落时的鼓励",
+    "您是知识的引路人，\n是心灵的灯塔",
+    "祝您教师节快乐，\n感谢有您！"
+];
+
+
+// =========================================================
+// 页面状态管理
+// =========================================================
+
+const state = {
+    currentPage: -1,
+    lastTime: 0,
+    isAnimating: false
+};
+
+
+// =========================================================
+// DOM 元素缓存
+// =========================================================
+
+const elements = {
+    cover: document.getElementById('cover'),
+    pages: document.getElementById('pages'),
+    message: document.getElementById('message'),
+    header: document.getElementById('header'),
+    timerContainer: document.getElementById('timerContainer'),
+    finalSub: document.getElementById('finalSub'),
+    hint: document.getElementById('hint'),
+    ornament: document.getElementById('ornament')
+};
+
+
+// =========================================================
+// 显示消息
+// =========================================================
+
+function showMessage(pageIndex) {
+    if (pageIndex < 0 || pageIndex >= messages.length) return;
+    
+    state.currentPage = pageIndex;
+    elements.message.textContent = messages[pageIndex];
+    
+    // 触发重排以重新启动动画
+    elements.message.offsetHeight;
+    
+    elements.message.classList.add('show');
+    
+    // 最后一页显示副标题
+    if (pageIndex === messages.length - 1) {
+        elements.message.classList.add('final');
+        setTimeout(() => {
+            elements.finalSub.classList.add('show');
+        }, 200);
+    } else {
+        elements.message.classList.remove('final');
+        elements.finalSub.classList.remove('show');
+    }
+}
+
+
+// =========================================================
+// 隐藏消息
+// =========================================================
+
+function hideMessage() {
+    elements.message.classList.remove('show');
+    elements.message.classList.remove('final');
+    elements.finalSub.classList.remove('show');
+}
+
+
+// =========================================================
+// 打开书籍（第一页）
+// =========================================================
+
+function openBook() {
+    if (state.currentPage >= 0) return;
+    
+    state.currentPage = 0;
+    
+    elements.cover.classList.add('out');
+    elements.pages.classList.add('active');
+    elements.header.classList.add('hide');
+    elements.timerContainer.classList.add('hide');
+    
+    showMessage(0);
+}
+
+
+// =========================================================
+// 关闭书籍（回到封面）
+// =========================================================
+
+function closeBook() {
+    if (state.currentPage < 0) return;
+    
+    state.currentPage = -1;
+    
+    elements.cover.classList.remove('out');
+    elements.pages.classList.remove('active');
+    elements.header.classList.remove('hide');
+    elements.timerContainer.classList.remove('hide');
+    
+    hideMessage();
+}
+
+
+// =========================================================
+// 切换到下一页
+// =========================================================
+
+function goToNextPage() {
+    if (state.isAnimating) return;
+    
+    // 未打开书籍，打开第一页
+    if (state.currentPage < 0) {
+        openBook();
+        return;
+    }
+    
+    // 已在最后一页，不往后翻
+    if (state.currentPage >= messages.length - 1) return;
+    
+    state.isAnimating = true;
+    hideMessage();
+    
+    setTimeout(() => {
+        showMessage(state.currentPage + 1);
+        state.isAnimating = false;
+    }, 300);
+}
+
+
+// =========================================================
+// 切换到上一页
+// =========================================================
+
+function goToPreviousPage() {
+    if (state.isAnimating) return;
+    
+    // 在第一页，返回封面
+    if (state.currentPage === 0) {
+        state.isAnimating = true;
+        hideMessage();
+        
+        setTimeout(() => {
+            closeBook();
+            state.isAnimating = false;
+        }, 300);
+        return;
+    }
+    
+    // 未打开书籍，不处理
+    if (state.currentPage < 0) return;
+    
+    state.isAnimating = true;
+    hideMessage();
+    
+    setTimeout(() => {
+        showMessage(state.currentPage - 1);
+        state.isAnimating = false;
+    }, 300);
+}
+
+
+// =========================================================
+// 全页面滚动监听（鼠标滚轮）
+// =========================================================
+
+let touchStartY = 0;
+
+document.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    
+    const now = Date.now();
+    if (now - state.lastTime < 500) return;
+    
+    if (event.deltaY > 0) {
+        // 向下滚，翻下一页
+        goToNextPage();
+    } else {
+        // 向上滚，翻上一页
+        goToPreviousPage();
+    }
+    
+    state.lastTime = now;
+}, { passive: false });
+
+
+// =========================================================
+// 触摸滑动监听
+// =========================================================
+
+document.addEventListener('touchstart', (event) => {
+    touchStartY = event.touches[0].clientY;
+}, { passive: false });
+
+document.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+}, { passive: false });
+
+document.addEventListener('touchend', (event) => {
+    const touchEndY = event.changedTouches[0].clientY;
+    const deltaY = touchStartY - touchEndY;
+    const now = Date.now();
+    
+    if (Math.abs(deltaY) < 30) return;
+    if (now - state.lastTime < 500) return;
+    
+    if (deltaY > 0) {
+        // 上滑，翻下一页
+        goToNextPage();
+    } else {
+        // 下滑，翻上一页
+        goToPreviousPage();
+    }
+    
+    state.lastTime = now;
+}, { passive: false });
+
+
+// =========================================================
+// 点击封面打开书籍
+// =========================================================
+
+elements.cover.addEventListener('click', openBook);
+
+
+// =========================================================
+// 点击内容区域翻到下一页
+// =========================================================
+
+elements.pages.addEventListener('click', goToNextPage);
+
+
+// =========================================================
+// 键盘支持（向上箭头打开书籍）
+// =========================================================
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp' && state.currentPage < 0) {
+        openBook();
+    }
+});
+
+
+// =========================================================
+// 时间计时器
+// =========================================================
+
+function updateTimer() {
+    const timerCount = document.getElementById('timerCount');
+    const startDate = new Date('2026-09-01T09:06:00');
+    const now = new Date();
+    const diff = now - startDate;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    timerCount.textContent = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+}
+
+updateTimer();
+setInterval(updateTimer, 1000);
+
+</script>
+
+</body>
+</html>
